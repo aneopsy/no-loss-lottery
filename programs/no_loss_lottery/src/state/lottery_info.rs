@@ -21,7 +21,7 @@ impl LotteryInfo {
         self.entry_fee = entry_fee;
         self.winner = None;
         self.max_participants = max_participants;
-        self.status = LotteryStatus::Started.to_code();
+        // self.status = LotteryStatus::Started.to_code();
         Ok(())
     }
 
@@ -54,27 +54,27 @@ impl LotteryInfo {
     }
 }
 
-#[derive(PartialEq, Eq,)]
-pub enum LotteryStatus {
-    //initial stage
-    Started,
-    //Winner has been selected
-    Completed,
-}
+// #[derive(PartialEq, Eq,)]
+// pub enum LotteryStatus {
+//     //initial stage
+//     Started,
+//     //Winner has been selected
+//     Completed,
+// }
 
-impl LotteryStatus {
-    pub fn to_code(&self) -> u8 {
-        match self {
-            LotteryStatus::Started => 0,
-            LotteryStatus::Completed => 1,
-        }
-    }
+// impl LotteryStatus {
+//     pub fn to_code(&self) -> u8 {
+//         match self {
+//             LotteryStatus::Started => 0,
+//             LotteryStatus::Completed => 1,
+//         }
+//     }
 
-    pub fn from(val: u8) -> std::result::Result<LotteryStatus, ErrorCode> {
-        match val {
-            0 => Ok(LotteryStatus::Started),
-            1 => Ok(LotteryStatus::Completed),
-            _ => Err(ErrorCode::InvalidStatus.into()),
-        }
-    }
-}
+//     pub fn from(val: u8) -> std::result::Result<LotteryStatus, ErrorCode> {
+//         match val {
+//             0 => Ok(LotteryStatus::Started),
+//             1 => Ok(LotteryStatus::Completed),
+//             _ => Err(ErrorCode::InvalidStatus.into()),
+//         }
+//     }
+// }

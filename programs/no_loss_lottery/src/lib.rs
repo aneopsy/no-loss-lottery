@@ -29,7 +29,6 @@ pub mod no_loss_lottery {
     pub fn enter_lottery(ctx: Context<EnterLottery>) -> Result<()> {
         instructions::lottery::enter_lottery(ctx)
     }
-
     pub fn withdraw<'a, 'b, 'c, 'info>(
         ctx: Context<'a, 'b, 'c, 'info, WithdrawTokensFromLendingPool<'info>>,
         vault_signer_bump: u8,
@@ -42,24 +41,25 @@ pub mod no_loss_lottery {
     ) -> Result<()> {
         instructions::lottery::deposit(ctx, vault_signer_bump)
     }
-
     pub fn choose_winner(ctx: Context<ChooseWinner>) -> Result<()> {
         instructions::lottery::choose_winner(ctx)
     }
     pub fn withdraw_user_tokens(ctx: Context<WithdrawUserTokens>) -> Result<()> {
         instructions::lottery::withdraw_user_tokens(ctx)
     }
+    pub fn close_accounts(ctx: Context<CloseAccounts>) -> Result<()> {
+        instructions::lottery::close_accounts(ctx)
+    }
+
+
+    // SWITCHBOARD
     #[access_control(ctx.accounts.validate(&ctx))]
     pub fn update_result(ctx: Context<UpdateResult>) -> Result<()> {
         instructions::randomness::update_result(ctx)
     }
-
     #[access_control(ctx.accounts.validate(&ctx, &params))]
     pub fn request_result(ctx: Context<RequestResult>, params: RequestResultParams) -> Result<()> {
         instructions::randomness::request_result(ctx, params)
     }
 
-    pub fn close_accounts(ctx: Context<CloseAccounts>) -> Result<()> {
-        instructions::lottery::close_accounts(ctx)
-    }
 }
